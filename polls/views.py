@@ -6,9 +6,6 @@ from django.http import HttpResponse, Http404
 # Models
 from .models import Question
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-
 def detail(request, question_id):
     try:
         question = Question.objects.get(pk=question_id)
@@ -24,7 +21,7 @@ def vote(request, question_id):
     return HttpResponse("You're voting on question %s." % question_id)
 
 def index(request):
-    lastest_question_list = Question.objects.order_by('-pud_date')[:5]
+    lastest_question_list = Question.objects.order_by('-pub_date')[:5]
     context = {'lastest_question_list': lastest_question_list}
     return render(request, 'index.html', context)
 
